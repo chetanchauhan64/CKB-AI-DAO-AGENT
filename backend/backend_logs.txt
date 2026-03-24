@@ -1,0 +1,23 @@
+
+> ckb-dao-agent-backend@1.0.0 dev
+> ts-node-dev --respawn --transpile-only src/index.ts
+
+[INFO] 23:16:00 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.2, typescript ver. 5.9.3)
+Error: listen EADDRINUSE: address already in use :::3001
+    at Server.setupListenHandle [as _listen2] (node:net:1817:16)
+    at listenInCluster (node:net:1865:12)
+    at Server.listen (node:net:1953:7)
+    at bootstrap (/Users/chetan/Desktop/CKB Autonomous Asset & DAO Yield Agent/backend/src/index.ts:76:14)
+    at Object.<anonymous> (/Users/chetan/Desktop/CKB Autonomous Asset & DAO Yield Agent/backend/src/index.ts:91:1)
+    at Module._compile (node:internal/modules/cjs/loader:1364:14)
+    at Module._compile (/Users/chetan/Desktop/CKB Autonomous Asset & DAO Yield Agent/backend/node_modules/source-map-support/source-map-support.js:568:25)
+    at Module.m._compile (/private/var/folders/mk/m1s_xmgj05v8crdt8lys641c0000gn/T/ts-node-dev-hook-711639636100158.js:69:33)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1422:10)
+    at require.extensions..jsx.require.extensions..js (/private/var/folders/mk/m1s_xmgj05v8crdt8lys641c0000gn/T/ts-node-dev-hook-711639636100158.js:114:20)
+[ERROR] 23:16:00 Error: listen EADDRINUSE: address already in use :::3001
+[2026-03-24 23:16:00.870 +0530] [32mINFO[39m (DAO Monitor/18658): [36mCron job added[39m
+    jobId: "dao-monitor"
+    cronExpression: "*/30 * * * *"
+[2026-03-24 23:16:00.870 +0530] [32mINFO[39m (18658): [36mScheduler started[39m
+[2026-03-24 23:16:00.876 +0530] [32mINFO[39m (18658): [36mSIGTERM received — shutting down[39m
+[2026-03-24 23:16:00.876 +0530] [32mINFO[39m (18658): [36mScheduler destroyed[39m
