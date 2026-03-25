@@ -3,7 +3,7 @@
 An AI-powered DeFi portfolio manager for the **Nervos Network** that automates asset management, DAO yield optimization, and on-chain actions using natural language.
  A fully autonomous AI agent that monitors, analyzes, and executes blockchain transactions on your behalf.
 
-**Deployed on Vercel:** [https://ckb-ai-agent-git-main-alexanon88s-projects.vercel.app](https://ckb-ai-agent-git-main-alexanon88s-projects.vercel.app/)
+**Deployed on Vercel:** [https://ckb-ai-agent.vercel.app/](https://ckb-ai-agent.vercel.app/)
 
 
 ## Dashboard Preview
