@@ -90,7 +90,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ---
 
-## 📖 Story Timeline
+## Story Timeline
 - Converts blockchain activity into readable logs  
 - Shows lifecycle:
   - Earning → Unlocking → Claim → Completed  
@@ -139,7 +139,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ---
 
-## 📖 Activity Timeline Module
+## Activity Timeline Module
 - Converts raw blockchain logs  
 - Adds AI-generated insights  
 - Improves user understanding  
@@ -231,7 +231,7 @@ docs/architecture.md
 
 ---
 
-## 🔗 Deployed Contracts
+## Deployed Contracts
 
 | Contract Name        | Description                              | Network |
 |---------------------|------------------------------------------|---------|
@@ -267,8 +267,6 @@ If you have any questions or suggestions, feel free to connect:
 💼 LinkedIn: https://www.linkedin.com/in/chetanchauhan64/  
 🐙 GitHub: https://github.com/chetanchauhan64  
 
----
+## Thank You ❤️ 
 
-## ❤️ Support
 
-If you found this project useful, please consider giving it a ⭐ on GitHub — it really helps!
