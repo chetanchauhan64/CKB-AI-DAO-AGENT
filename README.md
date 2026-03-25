@@ -2,7 +2,7 @@
 
 An AI-powered DeFi portfolio manager for the **Nervos Network** that automates asset management, DAO yield optimization, and on-chain actions using natural language.
 
-🚀 A fully autonomous AI agent that monitors, analyzes, and executes blockchain transactions on your behalf.
+ A fully autonomous AI agent that monitors, analyzes, and executes blockchain transactions on your behalf.
 
 ---
 
@@ -11,7 +11,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ---
 
-## 📸 Dashboard Preview
+## Dashboard Preview
 ![Dashboard](./docs/dashboard.png)
 
 ---
@@ -36,7 +36,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 # How to Use the Platform
 
-## 🔐 Connect Wallet
+## Connect Wallet
 - Connect your Nervos wallet to start using the platform  
 - The AI agent will fetch your balance and DAO positions  
 
@@ -44,7 +44,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ---
 
-## 📊 Check Portfolio
+## Check Portfolio
 - Ask AI: **"Check my balance"**  
 - View total assets, DAO deposits, and rewards  
 
@@ -52,7 +52,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ---
 
-## 💰 Deposit into DAO
+## Deposit into DAO
 1. Enter deposit amount  
 2. Confirm transaction  
 3. Funds start earning yield  
@@ -61,7 +61,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ---
 
-## 💸 Withdraw from DAO
+## Withdraw from DAO
 1. Select DAO position  
 2. Withdraw after maturity  
 3. Claim rewards  
@@ -70,7 +70,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ---
 
-## 🤖 Enable Autopilot Mode
+## Enable Autopilot Mode
 - AI automatically:
   - Withdraws matured funds  
   - Claims rewards  
@@ -80,7 +80,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ---
 
-## 🧠 AI Recommendations
+## AI Recommendations
 - AI suggests actions like:
   - Reinvest idle funds  
   - Claim rewards  
@@ -99,30 +99,30 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ---
 
-# 🧩 Modules
+# Modules
 
-## 🤖 AI Decision Engine
+## AI Decision Engine
 - Natural language processing using Claude  
 - Executes blockchain actions  
 - Provides smart recommendations  
 
 ---
 
-## ⚡ Autopilot Engine
+## Autopilot Engine
 - Fully automated yield strategy  
 - Handles reinvestment cycles  
 - Real-time execution tracking  
 
 ---
 
-## 📊 Portfolio Dashboard
+## Portfolio Dashboard
 - Displays assets, DAO positions  
 - Live updates using WebSockets  
 - Tracks yield growth  
 
 ---
 
-## 🧠 Smart Insights System
+## Smart Insights System
 - Detects:
   - Idle funds  
   - Claimable rewards  
@@ -130,7 +130,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ---
 
-## 🎯 Risk Management Module
+## Risk Management Module
 - Risk Profiles:
   - 🟢 Conservative  
   - 🟡 Balanced  
@@ -146,13 +146,13 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ---
 
-## 🔄 Global State Management
+## Global State Management
 - Zustand-based centralized store  
 - Syncs UI, backend, and blockchain events  
 
 ---
 
-# 🛠️ Tech Stack
+# Tech Stack
 
 ### Frontend
 - Next.js  
@@ -173,7 +173,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ---
 
-# ⚙️ Setup Guide
+# Setup Guide
 
 ## Prerequisites
 - Node.js 18+  
@@ -214,7 +214,7 @@ cd frontend && npm run dev
 
 ---
 
-# 🏗️ Architecture
+# Architecture
 See detailed system design:
 
 ```
@@ -223,7 +223,7 @@ docs/architecture.md
 
 ---
 
-# 🚀 Future Scope
+# Future Scope
 - Multi-chain support  
 - Advanced AI trading strategies  
 - Mobile app  
@@ -244,9 +244,9 @@ docs/architecture.md
 
 ---
 
-## 🤝 Contributing Guidelines
+## Contributing Guidelines
 
-We welcome contributions to improve this AI-powered DeFi agent 🚀  
+We welcome contributions to improve this AI-powered DeFi agent 
 
 To get started:
 - Fork the repository  
@@ -258,13 +258,14 @@ For major changes, please open an issue first to discuss what you would like to 
 
 ---
 
-## 📬 Contact
+## Contact
 
 If you have any questions or suggestions, feel free to connect:
 
 **Chetan Chauhan**  
-📧 (Add your email here)  
-💼 LinkedIn (Add link)  
+📧 thakurchetan7275@gmail.com  
+💼 LinkedIn: https://www.linkedin.com/in/chetanchauhan64/  
+🐙 GitHub: https://github.com/chetanchauhan64  
 
 ---
 
