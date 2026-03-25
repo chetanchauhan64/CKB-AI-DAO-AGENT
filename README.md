@@ -7,7 +7,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 
 ## Dashboard Preview
-![Dashboard](./docs/dashboard.png)
+![Dashboard]
 
 ---
 
@@ -262,6 +262,12 @@ If you have any questions or suggestions, feel free to connect:
 💼 LinkedIn: https://www.linkedin.com/in/chetanchauhan64/  
 🐙 GitHub: https://github.com/chetanchauhan64  
 
-## Thank You ❤️ 
+Thank You ❤️ 
+
+
+
+
+
+
 
 
