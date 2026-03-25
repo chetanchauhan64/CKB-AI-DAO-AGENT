@@ -10,10 +10,30 @@ export class SocketManager {
   private io: SocketIOServer;
 
   constructor(httpServer: HttpServer) {
+    // Match the same allowed origins as Express CORS
+    const configuredOrigins = env.frontendUrl
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
+    const allowedOrigins = new Set([
+      ...configuredOrigins,
+      'http://localhost:3000',
+      'http://127.0.0.1:3000',
+      'http://localhost:3001',
+    ]);
+    const VERCEL_PREVIEW_RE = /^https:\/\/ckb-ai-agent[\w-]*\.vercel\.app$/;
+
     this.io = new SocketIOServer(httpServer, {
       cors: {
-        origin: env.frontendUrl,
+        origin: (origin, callback) => {
+          if (!origin || allowedOrigins.has(origin) || VERCEL_PREVIEW_RE.test(origin)) {
+            callback(null, true);
+          } else {
+            callback(new Error(`Socket.io CORS: origin ${origin} not allowed`));
+          }
+        },
         methods: ['GET', 'POST'],
+        credentials: true,
       },
     });
 

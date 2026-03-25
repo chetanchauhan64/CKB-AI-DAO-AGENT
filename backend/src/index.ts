@@ -25,21 +25,33 @@ async function bootstrap() {
   const httpServer = http.createServer(app);
 
   // Middleware
-  // Allow the configured frontend URL plus localhost:3000 for dev
+  // FRONTEND_URL accepts comma-separated origins, e.g.:
+  //   https://ckb-ai-agent.vercel.app,https://ckb-ai-agent-git-main-alexanon88.vercel.app
+  const configuredOrigins = env.frontendUrl
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+
   const allowedOrigins = new Set([
-    env.frontendUrl,
+    ...configuredOrigins,
     'http://localhost:3000',
     'http://127.0.0.1:3000',
     'http://localhost:3001',
     'http://localhost:3002',
   ]);
+
+  // Also allow any Vercel preview/branch deployment URL for this project
+  const VERCEL_PREVIEW_RE = /^https:\/\/ckb-ai-agent[\w-]*\.vercel\.app$/;
+
   app.use(
     cors({
       origin: (origin, callback) => {
         // Allow requests with no Origin header (curl, Postman, server-to-server)
-        if (!origin || allowedOrigins.has(origin)) {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.has(origin) || VERCEL_PREVIEW_RE.test(origin)) {
           callback(null, true);
         } else {
+          logger.warn({ origin }, 'CORS blocked request');
           callback(new Error(`CORS: origin ${origin} not allowed`));
         }
       },
@@ -78,6 +90,25 @@ async function bootstrap() {
       { port: env.port, network: env.ckbNetwork, rpc: env.ckbRpcUrl },
       '🚀 CKB DAO Agent backend started',
     );
+
+    // ── Keep-warm ping (Render free tier spins down after ~15min inactivity) ──
+    // Self-pings /health every 14 minutes so the instance stays alive.
+    // Only runs in production — no noise in local dev.
+    if (env.nodeEnv === 'production') {
+      const KEEP_WARM_MS = 14 * 60 * 1000; // 14 minutes
+      const selfUrl = `http://localhost:${env.port}/health`;
+      const keepWarmTimer = setInterval(() => {
+        http.get(selfUrl, (res) => {
+          logger.debug({ status: res.statusCode }, '🔥 Keep-warm ping sent');
+          res.resume(); // drain the response so socket closes cleanly
+        }).on('error', (err) => {
+          logger.warn({ err: err.message }, 'Keep-warm ping failed');
+        });
+      }, KEEP_WARM_MS);
+
+      // Clean up on graceful shutdown
+      process.on('SIGTERM', () => clearInterval(keepWarmTimer));
+    }
   });
 
   // Graceful shutdown
