@@ -461,6 +461,12 @@ export function ActivityFeed({ events, large }: ActivityFeedProps) {
   const claimedCount  = events.filter(e => e.type === 'REWARDS_CLAIMED').length;
   const txCount       = events.filter(e => e.type === 'TX_CONFIRMED').length;
 
+  // Show More state for the large (full-page) variant
+  const SHOW_LIMIT = 5;
+  const [showAll, setShowAll] = useState(false);
+  const displayedEvents = large && !showAll ? visibleEvents.slice(0, SHOW_LIMIT) : visibleEvents;
+  const hiddenCount = visibleEvents.length - SHOW_LIMIT;
+
   return (
     <div
       className={`flex flex-col h-full ${
@@ -550,7 +556,7 @@ export function ActivityFeed({ events, large }: ActivityFeedProps) {
           </div>
         ) : (
           <div>
-            {visibleEvents.map((ev) => (
+            {displayedEvents.map((ev) => (
               <EventRow
                 key={ev.id}
                 event={ev}

@@ -1,6 +1,7 @@
 'use client';
 
-import { Database, TrendingUp, Clock, RefreshCw, ChevronRight, Bot } from 'lucide-react';
+import { useState } from 'react';
+import { Database, TrendingUp, Clock, RefreshCw, ChevronRight, Bot, ChevronDown } from 'lucide-react';
 import { useDAOCells, useEpochInfo } from '@/hooks/useWallet';
 import { useAppStore } from '@/store';
 import type { DaoCell } from '@/lib/apiClient';
@@ -76,11 +77,7 @@ function DAOCellCard({ cell }: { cell: DaoCell }) {
           <div className="flex items-center gap-2 mb-1.5">
             <span
               className="text-[10px] px-2.5 py-1 rounded-md font-bold uppercase tracking-wider"
-              style={{
-                background: cfg.bg,
-                color: cfg.text,
-                border: `1px solid ${cfg.border}`,
-              }}
+              style={{ background: cfg.bg, color: cfg.text, border: `1px solid ${cfg.border}` }}
             >
               {cfg.label}
             </span>
@@ -93,7 +90,6 @@ function DAOCellCard({ cell }: { cell: DaoCell }) {
             {Number(cell.capacityCKB).toFixed(2)} <span className="text-[12px] font-normal text-[var(--text-secondary)]">CKB</span>
           </div>
 
-          {/* Narrative description */}
           <p className="text-[11px] mt-1 leading-relaxed" style={{ color: 'var(--text-muted)' }}>
             {cfg.narrative}
           </p>
@@ -112,7 +108,6 @@ function DAOCellCard({ cell }: { cell: DaoCell }) {
             )}
           </div>
 
-          {/* Epoch mini-progress bar */}
           {isDeposited && (
             <div className="mt-3">
               <div className="flex justify-between text-[9px] font-bold uppercase tracking-wider text-[var(--text-muted)] mb-1">
@@ -147,6 +142,109 @@ function DAOCellCard({ cell }: { cell: DaoCell }) {
   );
 }
 
+// ─── Collapsible Section ───────────────────────────────────────────────────────
+interface CollapsibleSectionProps {
+  title: string;
+  subtitle?: string;
+  defaultOpen?: boolean;
+  badge?: string | number;
+  children: React.ReactNode;
+  accentColor?: string;
+}
+
+function CollapsibleSection({
+  title, subtitle, defaultOpen = false, badge, children, accentColor = 'var(--ckb-green)',
+}: CollapsibleSectionProps) {
+  const [open, setOpen] = useState(defaultOpen);
+
+  return (
+    <div
+      className="rounded-2xl overflow-hidden border transition-all duration-200"
+      style={{ borderColor: open ? 'rgba(255,255,255,0.09)' : 'var(--border)', background: 'var(--bg-card)' }}
+    >
+      {/* Header */}
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="w-full flex items-center justify-between px-4 py-3 text-left hover:bg-white/[0.02] transition-colors"
+      >
+        <div className="flex items-center gap-2.5">
+          <ChevronRight
+            size={14}
+            className={`collapsible-chevron flex-shrink-0 ${open ? 'open' : ''}`}
+            style={{ color: open ? accentColor : 'var(--text-muted)' }}
+          />
+          <div>
+            <span
+              className="text-[13px] font-semibold"
+              style={{ color: open ? 'var(--text-primary)' : 'var(--text-secondary)' }}
+            >
+              {title}
+            </span>
+            {subtitle && (
+              <span className="text-[11px] ml-2" style={{ color: 'var(--text-muted)' }}>
+                {subtitle}
+              </span>
+            )}
+          </div>
+        </div>
+        {badge !== undefined && (
+          <span
+            className="text-[10px] font-bold px-2 py-0.5 rounded-full"
+            style={{
+              background: open ? `rgba(0,212,170,0.12)` : 'var(--bg-base)',
+              color: open ? accentColor : 'var(--text-muted)',
+              border: `1px solid ${open ? 'rgba(0,212,170,0.25)' : 'var(--border)'}`,
+            }}
+          >
+            {badge}
+          </span>
+        )}
+      </button>
+
+      {/* Body */}
+      <div className={`collapsible-body ${open ? 'open' : 'closed'}`}>
+        <div className="px-4 pb-4 pt-1">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Show More wrapper ────────────────────────────────────────────────────────
+function ShowMoreList<T>({
+  items,
+  limit = 3,
+  renderItem,
+}: {
+  items: T[];
+  limit?: number;
+  renderItem: (item: T, index: number) => React.ReactNode;
+}) {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? items : items.slice(0, limit);
+  const remaining = items.length - limit;
+
+  return (
+    <div className="space-y-3">
+      {visible.map((item, i) => renderItem(item, i))}
+      {items.length > limit && (
+        <button
+          onClick={() => setShowAll((v) => !v)}
+          className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl text-[12px] font-semibold transition-all hover:bg-white/[0.03]"
+          style={{ color: 'var(--ckb-green)', border: '1px dashed rgba(0,212,170,0.2)' }}
+        >
+          <ChevronDown
+            size={14}
+            style={{ transform: showAll ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}
+          />
+          {showAll ? 'Show Less' : `Show ${remaining} More`}
+        </button>
+      )}
+    </div>
+  );
+}
+
 export function DAOTracker() {
   const { cells, count, isLoading, refresh } = useDAOCells();
   const { epochInfo } = useEpochInfo();
@@ -158,9 +256,9 @@ export function DAOTracker() {
   const epochsToNext   = (epochInfo as { epochsToNextCycleBoundary?: number })?.epochsToNextCycleBoundary ?? 180;
 
   return (
-    <div className="h-full flex flex-col gap-5 overflow-hidden">
+    <div className="h-full flex flex-col gap-4 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between flex-shrink-0 px-2 pt-1">
+      <div className="flex items-center justify-between flex-shrink-0 px-1 pt-1">
         <div>
           <h2 className="text-xl font-bold" style={{ color: 'var(--text-primary)' }}>
             Nervos DAO Vault
@@ -177,52 +275,17 @@ export function DAOTracker() {
         </button>
       </div>
 
-      {/* Autopilot AI banner */}
-      {isAutopilot && (
-        <div
-          className="narrator-enter flex-shrink-0 flex items-center gap-3 px-4 py-3 rounded-2xl mx-2"
-          style={{
-            background: 'linear-gradient(135deg, rgba(0,212,170,0.06) 0%, rgba(59,91,219,0.05) 100%)',
-            border: '1px solid rgba(0,212,170,0.3)',
-          }}
-        >
-          <div
-            className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 autopilot-ring"
-            style={{ background: 'rgba(0,212,170,0.15)' }}
-          >
-            <Bot size={15} style={{ color: 'var(--ckb-green)' }} />
-          </div>
-          <div>
-            <div className="text-[9px] font-bold uppercase tracking-widest mb-0.5" style={{ color: 'var(--ckb-green)' }}>
-              🤖 Autopilot Active
-            </div>
-            <p className="text-[12px]" style={{ color: 'var(--text-secondary)' }}>
-              AI will auto-withdraw mature positions, claim rewards, and reinvest for you.
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* Portfolio Intelligence */}
-      {!isLoading && cells.length > 0 && (
-        <div className="flex-shrink-0 mb-1">
-          <PortfolioPanel cells={cells} extraEarned={extraEarned} />
-        </div>
-      )}
-
-      {/* Epoch stats Cards */}
+      {/* Epoch stats */}
       <div className="grid grid-cols-[1.5fr_1fr_1fr] gap-3 flex-shrink-0">
         <div className="card-hover card px-5 py-4 rounded-2xl shadow-sm border border-[var(--border)] bg-[var(--bg-card)] flex flex-col justify-center">
           <EpochProgress epochsInCycle={epochsInCycle} />
         </div>
-        
         <div className="card-hover card p-3 rounded-2xl shadow-sm border border-[var(--border)] bg-[var(--bg-card)] flex flex-col justify-center items-center text-center">
           <div className="text-[10px] uppercase font-bold tracking-wider text-[var(--text-muted)] mb-1">Current Epoch</div>
           <div className="text-xl font-bold text-[var(--text-primary)]" style={{ fontFamily: 'JetBrains Mono' }}>
             #{currentEpoch}
           </div>
         </div>
-        
         <div className="card-hover card p-3 rounded-2xl shadow-sm border border-[var(--border)] bg-[var(--bg-card)] flex flex-col justify-center items-center text-center">
           <div className="text-[10px] uppercase font-bold tracking-wider text-[var(--text-muted)] mb-1">Until Unlock</div>
           <div className="text-xl font-bold flex items-center gap-1.5 text-[var(--ckb-orange)]" style={{ fontFamily: 'JetBrains Mono' }}>
@@ -231,46 +294,100 @@ export function DAOTracker() {
         </div>
       </div>
 
-      {/* Cells list */}
-      <div className="flex-1 overflow-y-auto pr-3 pb-4 space-y-4">
-        <div className="text-[11px] uppercase font-bold tracking-wider text-[var(--text-muted)] mt-1 px-1 flex items-center justify-between">
-          <span>Active Positions</span>
-          <span className="bg-[var(--bg-card)] border border-[var(--border)] px-2 py-0.5 rounded-full">{count}</span>
-        </div>
+      {/* Collapsible sections */}
+      <div className="flex-1 overflow-y-auto pr-1 pb-4 space-y-3">
 
-        {isLoading ? (
-          <div className="space-y-4 pt-1">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="shimmer h-[120px] rounded-2xl" />
-            ))}
-          </div>
-        ) : count === 0 ? (
-          <div
-            className="h-48 flex flex-col items-center justify-center rounded-3xl gap-4 shadow-sm bg-[var(--bg-card)] mt-2"
-            style={{ border: '1px dashed var(--border)', color: 'var(--text-muted)' }}
-          >
-            <div className="w-14 h-14 rounded-full bg-[var(--bg-base)] flex items-center justify-center mb-1">
-              <Database size={24} className="opacity-40" />
-            </div>
-            <div className="text-base font-semibold text-[var(--text-primary)]">No Active Vault Positions</div>
-            <div className="text-[13px] text-[var(--text-muted)] bg-[var(--bg-base)] px-3 py-1.5 rounded-lg border border-[var(--border)]">
-              Try: &quot;Deposit 200 CKB into DAO&quot;
-            </div>
-          </div>
-        ) : (
-          <div className="space-y-3 pt-1">
-            {cells.map((cell) => (
-              <DAOCellCard key={`${cell.outPoint.txHash}-${cell.outPoint.index}`} cell={cell} />
-            ))}
-          </div>
-        )}
-
-        {/* Withdraw Section */}
+        {/* Portfolio Insights — open by default */}
         {!isLoading && cells.length > 0 && (
-          <div className="mt-6 pt-5 border-t border-[var(--border)]">
-            <WithdrawPanel cells={cells} />
-          </div>
+          <CollapsibleSection title="Portfolio Insights" defaultOpen={true} accentColor="var(--ckb-green)">
+            <PortfolioPanel cells={cells} extraEarned={extraEarned} />
+          </CollapsibleSection>
         )}
+
+        {/* Active Deposits — collapsed by default */}
+        <CollapsibleSection
+          title="Active Deposits"
+          defaultOpen={false}
+          badge={count}
+          accentColor="var(--ckb-blue)"
+        >
+          {isLoading ? (
+            <div className="space-y-4">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="shimmer h-[120px] rounded-2xl" />
+              ))}
+            </div>
+          ) : count === 0 ? (
+            <div
+              className="h-40 flex flex-col items-center justify-center rounded-2xl gap-3"
+              style={{ border: '1px dashed var(--border)', color: 'var(--text-muted)' }}
+            >
+              <div className="w-12 h-12 rounded-full bg-[var(--bg-base)] flex items-center justify-center">
+                <Database size={20} className="opacity-40" />
+              </div>
+              <div className="text-sm font-semibold text-[var(--text-primary)]">No Active Vault Positions</div>
+              <div className="text-[12px] text-[var(--text-muted)] bg-[var(--bg-base)] px-3 py-1.5 rounded-lg border border-[var(--border)]">
+                Try: &quot;Deposit 200 CKB into DAO&quot;
+              </div>
+            </div>
+          ) : (
+            <ShowMoreList
+              items={cells}
+              limit={3}
+              renderItem={(cell) => (
+                <DAOCellCard key={`${cell.outPoint.txHash}-${cell.outPoint.index}`} cell={cell} />
+              )}
+            />
+          )}
+        </CollapsibleSection>
+
+        {/* Withdrawals — collapsed by default */}
+        {!isLoading && cells.length > 0 && (
+          <CollapsibleSection
+            title="Withdrawals"
+            defaultOpen={false}
+            accentColor="var(--ckb-orange)"
+          >
+            <WithdrawPanel cells={cells} />
+          </CollapsibleSection>
+        )}
+
+        {/* Automation — collapsed by default */}
+        <CollapsibleSection
+          title="Automation"
+          defaultOpen={false}
+          accentColor="var(--ckb-purple)"
+        >
+          {isAutopilot ? (
+            <div
+              className="narrator-enter flex items-center gap-3 px-4 py-3 rounded-2xl"
+              style={{
+                background: 'linear-gradient(135deg, rgba(0,212,170,0.06) 0%, rgba(59,91,219,0.05) 100%)',
+                border: '1px solid rgba(0,212,170,0.3)',
+              }}
+            >
+              <div
+                className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 autopilot-ring"
+                style={{ background: 'rgba(0,212,170,0.15)' }}
+              >
+                <Bot size={15} style={{ color: 'var(--ckb-green)' }} />
+              </div>
+              <div>
+                <div className="text-[9px] font-bold uppercase tracking-widest mb-0.5" style={{ color: 'var(--ckb-green)' }}>
+                  🤖 Autopilot Active
+                </div>
+                <p className="text-[12px]" style={{ color: 'var(--text-secondary)' }}>
+                  AI will auto-withdraw mature positions, claim rewards, and reinvest for you.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="text-[13px] text-[var(--text-muted)] py-2 text-center">
+              Enable <span style={{ color: 'var(--ckb-green)' }}>Autopilot</span> from the sidebar to automate compounding.
+            </div>
+          )}
+        </CollapsibleSection>
+
       </div>
     </div>
   );

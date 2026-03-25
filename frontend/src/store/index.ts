@@ -71,6 +71,15 @@ interface AppState {
   activeView: 'chat' | 'dao' | 'scheduler' | 'activity';
   setActiveView: (view: 'chat' | 'dao' | 'scheduler' | 'activity') => void;
 
+  // Focus mode
+  focusMode: boolean;
+  setFocusMode: (val: boolean) => void;
+
+  // Activity tab badge (new events while not on activity view)
+  activityBadge: number;
+  incrementActivityBadge: () => void;
+  clearActivityBadge: () => void;
+
   // Demo mode
   isDemoMode: boolean;
   setDemoMode: (val: boolean) => void;
@@ -117,6 +126,13 @@ interface AppState {
 export const useAppStore = create<AppState>((set) => ({
   activeView: 'chat',
   setActiveView: (view) => set({ activeView: view }),
+
+  focusMode: true,
+  setFocusMode: (val) => set({ focusMode: val }),
+
+  activityBadge: 0,
+  incrementActivityBadge: () => set((s) => ({ activityBadge: s.activityBadge + 1 })),
+  clearActivityBadge: () => set({ activityBadge: 0 }),
 
   isDemoMode: false,
   setDemoMode: (val) => set({ isDemoMode: val }),
