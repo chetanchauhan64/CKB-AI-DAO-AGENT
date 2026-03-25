@@ -5,9 +5,11 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 **Deployed on Vercel:** [https://ckb-ai-agent.vercel.app/](https://ckb-ai-agent.vercel.app/)
 
+## Dashboard
 
-## Dashboard Preview
-![Dashboard]
+a. View your complete portfolio, DAO deposits, and AI agent status in real-time.
+
+<img width="1470" height="837" alt="Dashboard" src="https://github.com/user-attachments/assets/ee09ea7f-a75b-4cbb-a874-792384952c2d" />
 
 ---
 
@@ -33,9 +35,9 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 
 ## Connect Wallet
 - Connect your Nervos wallet to start using the platform  
-- The AI agent will fetch your balance and DAO positions  
+- The AI agent fetches wallet address, balance, and DAO positions in real-time  
 
-![Wallet](./docs/wallet.png)
+<img width="1470" height="837" alt="Wallet" src="https://github.com/user-attachments/assets/50232dc3-863f-4b15-b5f7-54ff8340deef" />
 
 ---
 
@@ -43,7 +45,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 - Ask AI: **"Check my balance"**  
 - View total assets, DAO deposits, and rewards  
 
-![Portfolio](./docs/portfolio.png)
+<img width="1470" height="837" alt="Portfolio" src="https://github.com/user-attachments/assets/fcfc57ab-6887-4f23-a7d0-e14e0626cd8d" />
 
 ---
 
@@ -52,7 +54,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 2. Confirm transaction  
 3. Funds start earning yield  
 
-![Deposit](./docs/deposit.png)
+<img width="1470" height="837" alt="Deposit" src="https://github.com/user-attachments/assets/cb4fb82e-6cc1-4703-b6ca-b6a6c2a85abe" />
 
 ---
 
@@ -61,7 +63,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 2. Withdraw after maturity  
 3. Claim rewards  
 
-![Withdraw](./docs/withdraw.png)
+<img width="1470" height="837" alt="Withdraw" src="https://github.com/user-attachments/assets/9a648d58-af4a-4e12-aa4b-fdcc16d7aecb" />
 
 ---
 
@@ -71,7 +73,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
   - Claims rewards  
   - Reinvests for compounding  
 
-![Autopilot](./docs/autopilot.png)
+<img width="1470" height="837" alt="Autopilot" src="https://github.com/user-attachments/assets/9364bc52-1797-407e-a7e8-f1a86900451d" />
 
 ---
 
@@ -81,7 +83,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
   - Claim rewards  
   - Optimize yield  
 
-![AI Panel](./docs/ai-panel.png)
+<img width="1470" height="837" alt="AI panel" src="https://github.com/user-attachments/assets/be36483c-8701-40e6-8459-37e7fa279cd2" />
 
 ---
 
@@ -90,7 +92,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 - Shows lifecycle:
   - Earning → Unlocking → Claim → Completed  
 
-![Timeline](./docs/timeline.png)
+<img width="1470" height="837" alt="Activity " src="https://github.com/user-attachments/assets/6fefacd2-9e2d-4881-aed4-7550b8dcdddf" />
 
 ---
 
@@ -226,16 +228,16 @@ docs/architecture.md
 
 ---
 
-## Deployed Contracts
+## 🔗 On-Chain Details
 
-| Contract Name        | Description                              | Network |
-|---------------------|------------------------------------------|---------|
-| Nervos DAO          | DAO deposit & yield mechanism            | CKB Testnet |
-| AI Execution Layer  | Handles automated AI-driven transactions | Off-chain + On-chain |
-| Wallet Integration  | User wallet interaction & balance fetch  | CKB Testnet |
+| Component            | Address / Reference                                      | Explorer Link |
+|----------------------|----------------------------------------------------------|---------------|
+| Wallet Address       | `ckt1qyqr9xazv277kwmr9svqved5wrggf9a6zrgqjk935j`         | [View](https://pudge.explorer.nervos.org/address/ckt1qyqr9xazv277kwmr9svqved5wrggf9a6zrgqjk935j) |
+| Nervos DAO Protocol  | Native DAO on CKB Testnet                                | [View](https://docs.nervos.org/docs/basics/guides/dao) |
+| Transactions         | DAO deposits, withdrawals, and rewards                   | Linked to wallet explorer |
 
-> ℹ️ Note: This project interacts directly with the Nervos DAO protocol using Lumos SDK.  
-> You can explore transactions via the Nervos Explorer based on your wallet address.
+> ℹ️ This project interacts directly with the Nervos DAO protocol using Lumos SDK.  
+> All on-chain operations (deposit, withdraw, harvest) are executed via the user's wallet on CKB Testnet.
 
 ---
 
@@ -255,14 +257,18 @@ For major changes, please open an issue first to discuss what you would like to 
 
 ## Contact
 
-If you have any questions or suggestions, feel free to connect:
+For any questions, feedback, or collaboration opportunities, please feel free to reach out:
 
 **Chetan Chauhan**  
-📧 thakurchetan7275@gmail.com  
-💼 LinkedIn: https://www.linkedin.com/in/chetanchauhan64/  
-🐙 GitHub: https://github.com/chetanchauhan64  
+Email: thakurchetan7275@gmail.com  
+LinkedIn: https://www.linkedin.com/in/chetanchauhan64/  
+GitHub: https://github.com/chetanchauhan64  
 
-Thank You ❤️ 
+---
+
+Thank you for reviewing this project ♥️
+
+
 
 
 
