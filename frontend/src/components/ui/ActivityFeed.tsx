@@ -563,6 +563,21 @@ export function ActivityFeed({ events, large }: ActivityFeedProps) {
                 isNew={newEventIds.has(ev.id)}
               />
             ))}
+
+            {/* Show More / Show Less — large variant only */}
+            {large && visibleEvents.length > SHOW_LIMIT && (
+              <button
+                onClick={() => setShowAll((v) => !v)}
+                className="w-full flex items-center justify-center gap-2 py-2.5 mt-2 rounded-xl text-[12px] font-semibold transition-all hover:bg-white/[0.03]"
+                style={{ color: 'var(--ckb-green)', border: '1px dashed rgba(0,212,170,0.25)' }}
+              >
+                <ChevronDown
+                  size={14}
+                  style={{ transform: showAll ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s ease' }}
+                />
+                {showAll ? 'Show Less' : `Show ${hiddenCount} More Events`}
+              </button>
+            )}
           </div>
         )}
       </div>
