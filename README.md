@@ -1,76 +1,240 @@
-# 🧠 CKB Autonomous Asset & DAO Yield Agent
+# CKB Autonomous Asset & DAO Yield Agent
 
 An AI-powered DeFi portfolio manager for the **Nervos Network** that automates asset management, DAO yield optimization, and on-chain actions using natural language.
 
-> 🚀 Built as a next-gen autonomous AI agent combining blockchain + intelligent decision-making.
+🚀 A fully autonomous AI agent that monitors, analyzes, and executes blockchain transactions on your behalf.
 
 ---
 
-## ✨ Key Highlights
-
-- 🤖 **AI-Powered Asset Manager**
-  - Understands natural language commands
-  - Analyzes wallet + DAO positions
-  - Executes transactions automatically
-
-- ⚡ **Autopilot Mode**
-  - Auto-withdraws DAO deposits at maturity
-  - Claims rewards & reinvests seamlessly
-  - Fully hands-free yield optimization
-
-- 📊 **Real-Time Portfolio Intelligence**
-  - Live AI status tracking (Monitoring / Active / Executing)
-  - Transaction analytics & yield growth insights
-  - Smart alerts for idle funds & opportunities
-
-- 🧠 **Smart Risk Management**
-  - Risk profiles: Conservative / Balanced / Aggressive
-  - AI adapts strategy based on user preference
-
-- 📖 **Storytelling DeFi Experience**
-  - Converts blockchain logs into readable activity timeline
-  - Tracks lifecycle: Earning → Unlocking → Claim → Completed
-
-- 🎯 **Premium UI/UX**
-  - Glassmorphism design
-  - Smooth animations & micro-interactions
-  - Guided onboarding demo for instant understanding
+## 🌐 Live Demo
+(Add your deployed link here)
 
 ---
 
-## 🛠️ Tech Stack
+## 📸 Dashboard Preview
+![Dashboard](./docs/dashboard.png)
+
+---
+
+## 📑 Table of Contents
+- [Overview](#-ckb-autonomous-asset--dao-yield-agent)
+- [How to Use the Platform](#-how-to-use-the-platform)
+  - [Connect Wallet](#connect-wallet)
+  - [Check Portfolio](#check-portfolio)
+  - [Deposit into DAO](#deposit-into-dao)
+  - [Withdraw from DAO](#withdraw-from-dao)
+  - [Enable Autopilot Mode](#enable-autopilot-mode)
+  - [AI Recommendations](#ai-recommendations)
+  - [Story Timeline](#story-timeline)
+- [Modules](#-modules)
+- [Tech Stack](#-tech-stack)
+- [Setup Guide](#-setup-guide)
+- [Architecture](#-architecture)
+- [Future Scope](#-future-scope)
+
+---
+
+# How to Use the Platform
+
+## 🔐 Connect Wallet
+- Connect your Nervos wallet to start using the platform  
+- The AI agent will fetch your balance and DAO positions  
+
+![Wallet](./docs/wallet.png)
+
+---
+
+## 📊 Check Portfolio
+- Ask AI: **"Check my balance"**  
+- View total assets, DAO deposits, and rewards  
+
+![Portfolio](./docs/portfolio.png)
+
+---
+
+## 💰 Deposit into DAO
+1. Enter deposit amount  
+2. Confirm transaction  
+3. Funds start earning yield  
+
+![Deposit](./docs/deposit.png)
+
+---
+
+## 💸 Withdraw from DAO
+1. Select DAO position  
+2. Withdraw after maturity  
+3. Claim rewards  
+
+![Withdraw](./docs/withdraw.png)
+
+---
+
+## 🤖 Enable Autopilot Mode
+- AI automatically:
+  - Withdraws matured funds  
+  - Claims rewards  
+  - Reinvests for compounding  
+
+![Autopilot](./docs/autopilot.png)
+
+---
+
+## 🧠 AI Recommendations
+- AI suggests actions like:
+  - Reinvest idle funds  
+  - Claim rewards  
+  - Optimize yield  
+
+![AI Panel](./docs/ai-panel.png)
+
+---
+
+## 📖 Story Timeline
+- Converts blockchain activity into readable logs  
+- Shows lifecycle:
+  - Earning → Unlocking → Claim → Completed  
+
+![Timeline](./docs/timeline.png)
+
+---
+
+# 🧩 Modules
+
+## 🤖 AI Decision Engine
+- Natural language processing using Claude  
+- Executes blockchain actions  
+- Provides smart recommendations  
+
+---
+
+## ⚡ Autopilot Engine
+- Fully automated yield strategy  
+- Handles reinvestment cycles  
+- Real-time execution tracking  
+
+---
+
+## 📊 Portfolio Dashboard
+- Displays assets, DAO positions  
+- Live updates using WebSockets  
+- Tracks yield growth  
+
+---
+
+## 🧠 Smart Insights System
+- Detects:
+  - Idle funds  
+  - Claimable rewards  
+  - Optimization opportunities  
+
+---
+
+## 🎯 Risk Management Module
+- Risk Profiles:
+  - 🟢 Conservative  
+  - 🟡 Balanced  
+  - 🔴 Aggressive  
+- AI adjusts behavior accordingly  
+
+---
+
+## 📖 Activity Timeline Module
+- Converts raw blockchain logs  
+- Adds AI-generated insights  
+- Improves user understanding  
+
+---
+
+## 🔄 Global State Management
+- Zustand-based centralized store  
+- Syncs UI, backend, and blockchain events  
+
+---
+
+# 🛠️ Tech Stack
 
 ### Frontend
-- Next.js (App Router)
-- React.js
-- Tailwind CSS
-- Zustand
-- Socket.io-client
+- Next.js  
+- React.js  
+- Tailwind CSS  
+- Zustand  
+- Socket.io-client  
 
 ### Backend
-- Node.js
-- Express.js
-- Socket.io
-- Anthropic SDK (Claude 3.5 Sonnet)
+- Node.js  
+- Express.js  
+- Socket.io  
+- Anthropic SDK (Claude)  
 
 ### Blockchain
-- Nervos Network (CKB Testnet)
-- @ckb-lumos/lumos
+- Nervos Network (CKB Testnet)  
+- @ckb-lumos/lumos  
 
 ---
 
-## 🚀 Getting Started
+# ⚙️ Setup Guide
 
-### Prerequisites
-- Node.js 18+
-- npm 9+
-- Nervos Testnet wallet (fund via faucet)
-- Anthropic API Key
+## Prerequisites
+- Node.js 18+  
+- npm 9+  
+- Nervos wallet (testnet funded)  
+- Anthropic API Key  
 
 ---
 
-### 1️⃣ Setup Environment Variables
-Create `.env` inside `backend/`:
+## 1️⃣ Setup Environment Variables
+Create `.env` inside backend:
 
 ```env
 ANTHROPIC_API_KEY=your_api_key
+```
+
+---
+
+## 2️⃣ Install Dependencies
+```bash
+cd backend && npm install
+cd ../frontend && npm install
+```
+
+---
+
+## 3️⃣ Run the Project
+```bash
+# Backend
+cd backend && npm run dev
+
+# Frontend
+cd frontend && npm run dev
+```
+
+- Frontend → http://localhost:3000  
+- Backend → http://localhost:3001  
+
+---
+
+# 🏗️ Architecture
+See detailed system design:
+
+```
+docs/architecture.md
+```
+
+---
+
+# 🚀 Future Scope
+- Multi-chain support  
+- Advanced AI trading strategies  
+- Mobile app  
+- Smart portfolio diversification  
+
+---
+
+# 👨‍💻 Author
+**Chetan Chauhan**  
+B.Tech CSE | AI + Web3 Developer  
+
+---
+
+# ⭐ Star this repo if you like it!
