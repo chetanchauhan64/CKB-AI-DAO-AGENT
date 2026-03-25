@@ -231,10 +231,43 @@ docs/architecture.md
 
 ---
 
-# 👨‍💻 Author
-**Chetan Chauhan**  
-B.Tech CSE | AI + Web3 Developer  
+## 🔗 Deployed Contracts
+
+| Contract Name        | Description                              | Network |
+|---------------------|------------------------------------------|---------|
+| Nervos DAO          | DAO deposit & yield mechanism            | CKB Testnet |
+| AI Execution Layer  | Handles automated AI-driven transactions | Off-chain + On-chain |
+| Wallet Integration  | User wallet interaction & balance fetch  | CKB Testnet |
+
+> ℹ️ Note: This project interacts directly with the Nervos DAO protocol using Lumos SDK.  
+> You can explore transactions via the Nervos Explorer based on your wallet address.
 
 ---
 
-# ⭐ Star this repo if you like it!
+## 🤝 Contributing Guidelines
+
+We welcome contributions to improve this AI-powered DeFi agent 🚀  
+
+To get started:
+- Fork the repository  
+- Create a new branch (`feature/your-feature-name`)  
+- Commit your changes  
+- Push and create a Pull Request  
+
+For major changes, please open an issue first to discuss what you would like to improve.
+
+---
+
+## 📬 Contact
+
+If you have any questions or suggestions, feel free to connect:
+
+**Chetan Chauhan**  
+📧 (Add your email here)  
+💼 LinkedIn (Add link)  
+
+---
+
+## ❤️ Support
+
+If you found this project useful, please consider giving it a ⭐ on GitHub — it really helps!
