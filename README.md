@@ -7,8 +7,7 @@ An AI-powered DeFi portfolio manager for the **Nervos Network** that automates a
 ---
 
 ## 🌐 Live Demo
-(Add your deployed link here)
-
+**Deployed on Vercel:** [https://ckb-ai-agent-git-main-alexanon88s-projects.vercel.app](https://ckb-ai-agent-git-main-alexanon88s-projects.vercel.app/)
 ---
 
 ## Dashboard Preview
