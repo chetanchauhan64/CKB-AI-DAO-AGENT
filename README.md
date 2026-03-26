@@ -33,9 +33,18 @@ a. View your complete portfolio, DAO deposits, and AI agent status in real-time.
 
 # How to Use the Platform
 
-## Connect Wallet
-- Connect your Nervos wallet to start using the platform  
-- The AI agent fetches wallet address, balance, and DAO positions in real-time  
+## Wallet Architecture:
+
+This project uses an agent-managed wallet instead of a traditional user-connected wallet.
+
+The AI agent operates using a controlled wallet environment, allowing it to:
+- Execute DAO deposits and withdrawals autonomously
+- Manage yield strategies without requiring user signatures for every action
+- Maintain secure and predictable execution through CKB lock scripts
+
+This design was chosen to demonstrate true agent autonomy, rather than manual user-triggered transactions.
+
+However, the system is extensible and can easily integrate user wallet connections (e.g., CKB wallets) in future iterations.
 
 <img width="1470" height="837" alt="Wallet" src="https://github.com/user-attachments/assets/50232dc3-863f-4b15-b5f7-54ff8340deef" />
 
